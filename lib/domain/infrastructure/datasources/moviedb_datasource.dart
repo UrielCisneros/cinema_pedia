@@ -17,7 +17,7 @@ class MovieDbDatasource extends MoviesDatasource {
   }));
 
   @override
-  Future<List<Movie>> getNowPlayng({int page = 1}) async {
+  Future<List<Movie>> getNowPlaying({int page = 1}) async {
     //Se hace la peticion
     final response = await dio.get('/movie/now_playing');
     //Se convierte la peticion a una entidad creada con el quicktype (La entidad que nos responde la api)
