@@ -1,6 +1,8 @@
-import 'package:cinema_pedia/presentation/providers/providers.dart';
+import 'package:cinema_pedia/presentation/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:cinema_pedia/presentation/providers/providers.dart';
+import 'package:cinema_pedia/presentation/widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -26,11 +28,20 @@ class _HomeViewState extends ConsumerState<_HomeView> {
   @override
   void initState() {
     super.initState();
+    //Aqui el read del provider ejecuta la funcion de loadNextPage que por defecto es 0
     ref.read(nowPlayingMoviesProvider.notifier).loadNextPage();
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
+    return Column(
+      children: [
+        const CustomAppbar(),
+        MoviesSlideCard(
+          movies: nowPlayingMovies,
+        )
+      ],
+    );
   }
 }
