@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cinema_pedia/config/helpers/movies_format.dart';
 import 'package:cinema_pedia/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class MovieHorizontalListview extends StatelessWidget {
   const MovieHorizontalListview(
@@ -106,7 +107,9 @@ class _ListViewState extends State<_ListView> {
                               ),
                             );
                           }
-                          return child;
+                          return GestureDetector(
+                              onTap: () => context.push('/movie/${movie.id}'),
+                              child: child);
                         },
                       )),
                 ),
