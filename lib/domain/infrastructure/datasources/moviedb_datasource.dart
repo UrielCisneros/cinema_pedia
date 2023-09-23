@@ -16,12 +16,9 @@ class MovieDbDatasource extends MoviesDatasource {
     'language': "es-MX"
   }));
 
-  @override
-  Future<List<Movie>> getNowPlaying({int page = 1}) async {
-    //Se hace la peticion
-    final response = await dio.get('/movie/now_playing');
+  List<Movie> _jsonToMovieResponse(Map<String, dynamic> json) {
     //Se convierte la peticion a una entidad creada con el quicktype (La entidad que nos responde la api)
-    final movieDbResponse = MovieDbResponse.fromJson(response.data);
+    final movieDbResponse = MovieDbResponse.fromJson(json);
     //Y aqui comvertimos la entidad de la api a una nuestra con nuestro propio modelo, que esta en la clase MovieMapper
     final List<Movie> movie = movieDbResponse.results
         //Este where() sirve para poder hacer un filtro en un mapper
@@ -29,5 +26,35 @@ class MovieDbDatasource extends MoviesDatasource {
         .map((movieDbApi) => MovieMapper.movieDBToEntity(movieDbApi))
         .toList();
     return movie;
+  }
+
+  @override
+  Future<List<Movie>> getNowPlaying({int page = 1}) async {
+    //Se hace la peticion
+    final response =
+        await dio.get('/movie/now_playing', queryParameters: {'page': page});
+    return _jsonToMovieResponse(response.data);
+  }
+
+  @override
+  Future<List<Movie>> getPopular({int page = 1}) async {
+    //Se hace la peticion
+    final response =
+        await dio.get('/movie/popular', queryParameters: {'page': page});
+    return _jsonToMovieResponse(response.data);
+  }
+
+  @override
+  Future<List<Movie>> getUpcoming({int page = 1}) async {
+    final response =
+        await dio.get('/movie/upcoming', queryParameters: {'page': page});
+    return _jsonToMovieResponse(response.data);
+  }
+
+  @override
+  Future<List<Movie>> getToRated({int page = 1}) async {
+    final response =
+        await dio.get('/movie/top_rated', queryParameters: {'page': page});
+    return _jsonToMovieResponse(response.data);
   }
 }

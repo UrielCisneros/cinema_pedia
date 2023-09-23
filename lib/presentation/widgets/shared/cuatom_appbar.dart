@@ -19,7 +19,10 @@ class CustomAppbar extends StatelessWidget {
                 const SizedBox(
                   width: 5,
                 ),
-                const Text("Cinepedia"),
+                const Text(
+                  "Cinepedia",
+                  style: TextStyle(color: Colors.black),
+                ),
                 const Spacer(),
                 const IconButton(onPressed: null, icon: Icon(Icons.search))
               ],
