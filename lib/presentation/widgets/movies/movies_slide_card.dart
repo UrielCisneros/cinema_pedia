@@ -51,7 +51,7 @@ class _Slide extends StatelessWidget {
         ]);
 
     return FadeInRight(
-      delay: const Duration(milliseconds: 500),
+      delay: const Duration(milliseconds: 800),
       child: Padding(
           padding: const EdgeInsets.only(bottom: 30),
           child: DecoratedBox(

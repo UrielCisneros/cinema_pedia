@@ -83,7 +83,7 @@ class _ListViewState extends State<_ListView> {
         final movie = widget.movies[index];
 
         return FadeInRight(
-          delay: const Duration(microseconds: 500),
+          delay: const Duration(microseconds: 800),
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(
