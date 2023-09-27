@@ -88,7 +88,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
             const SizedBox(height: 5),
             MovieHorizontalListview(
               movies: topRatedMovies,
-              title: 'Cines',
+              title: 'Top',
               subTitle: 'Lunes',
               loadNextPage: () =>
                   ref.read(topRatedMovieProvider.notifier).loadNextPage(),
